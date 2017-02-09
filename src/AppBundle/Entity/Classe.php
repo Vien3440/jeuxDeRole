@@ -40,7 +40,7 @@ class Classe
     /**
      * Get id
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -51,6 +51,7 @@ class Classe
      * Set nom
      *
      * @param string $nom
+     *
      * @return Classe
      */
     public function setNom($nom)
@@ -63,7 +64,7 @@ class Classe
     /**
      * Get nom
      *
-     * @return string 
+     * @return string
      */
     public function getNom()
     {
@@ -74,6 +75,7 @@ class Classe
      * Set stats
      *
      * @param \stdClass $stats
+     *
      * @return Classe
      */
     public function setStats($stats)
@@ -86,10 +88,11 @@ class Classe
     /**
      * Get stats
      *
-     * @return \stdClass 
+     * @return \stdClass
      */
     public function getStats()
     {
         return $this->stats;
     }
 }
+

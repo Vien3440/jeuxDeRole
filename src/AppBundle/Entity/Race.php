@@ -24,7 +24,7 @@ class Race
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=255, unique=true)
+     * @ORM\Column(name="nom", type="string", length=255)
      */
     private $nom;
 
@@ -40,7 +40,7 @@ class Race
     /**
      * Get id
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -51,6 +51,7 @@ class Race
      * Set nom
      *
      * @param string $nom
+     *
      * @return Race
      */
     public function setNom($nom)
@@ -63,7 +64,7 @@ class Race
     /**
      * Get nom
      *
-     * @return string 
+     * @return string
      */
     public function getNom()
     {
@@ -74,6 +75,7 @@ class Race
      * Set stats
      *
      * @param \stdClass $stats
+     *
      * @return Race
      */
     public function setStats($stats)
@@ -86,10 +88,11 @@ class Race
     /**
      * Get stats
      *
-     * @return \stdClass 
+     * @return \stdClass
      */
     public function getStats()
     {
         return $this->stats;
     }
 }
+

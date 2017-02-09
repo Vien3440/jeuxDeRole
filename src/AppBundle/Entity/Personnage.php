@@ -24,11 +24,11 @@ class Personnage {
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="nom", type="string", length=255)
      */
-    private $name;
+    private $nom;
 
-   /**
+    /**
      * @var \stdClass
      *
      * @ORM\OneToOne(targetEntity="Stats")
@@ -44,7 +44,7 @@ class Personnage {
      */
     private $race;
 
-   /**
+    /**
      * @var \stdClass
      *
      * @ORM\OneToOne(targetEntity="Classe")
@@ -53,46 +53,54 @@ class Personnage {
     private $classe;
 
     /**
-     * @var int 
-     * 
+     * @var int
+     *
      * @ORM\Column(name="pa", type="integer")
      */
     private $pa;
 
+    
+    
+    private $positionH;
+    
+    private $positionV;
+    
     /**
      * Get id
      *
-     * @return integer 
+     * @return int
      */
     public function getId() {
         return $this->id;
     }
 
     /**
-     * Set name
+     * Set nom
      *
-     * @param string $name
+     * @param string $nom
+     *
      * @return Personnage
      */
-    public function setName($name) {
-        $this->name = $name;
+    public function setNom($nom) {
+        $this->nom = $nom;
 
         return $this;
     }
 
     /**
-     * Get name
+     * Get nom
      *
-     * @return string 
+     * @return string
      */
-    public function getName() {
-        return $this->name;
+    public function getNom() {
+        return $this->nom;
     }
 
     /**
      * Set stats
      *
      * @param \stdClass $stats
+     *
      * @return Personnage
      */
     public function setStats($stats) {
@@ -104,7 +112,7 @@ class Personnage {
     /**
      * Get stats
      *
-     * @return \stdClass 
+     * @return \stdClass
      */
     public function getStats() {
         return $this->stats;
@@ -114,6 +122,7 @@ class Personnage {
      * Set race
      *
      * @param \stdClass $race
+     *
      * @return Personnage
      */
     public function setRace($race) {
@@ -125,7 +134,7 @@ class Personnage {
     /**
      * Get race
      *
-     * @return \stdClass 
+     * @return \stdClass
      */
     public function getRace() {
         return $this->race;
@@ -135,6 +144,7 @@ class Personnage {
      * Set classe
      *
      * @param \stdClass $classe
+     *
      * @return Personnage
      */
     public function setClasse($classe) {
@@ -146,14 +156,14 @@ class Personnage {
     /**
      * Get classe
      *
-     * @return \stdClass 
+     * @return \stdClass
      */
     public function getClasse() {
         return $this->classe;
     }
 
     /**
-     * Get integer pa
+     * Get pa
      *
      * @return int
      */
@@ -162,31 +172,33 @@ class Personnage {
     }
 
     /**
+     * Set pa
+     *
      * @param integer $pa
+     *
      * @return Personnage
      */
     function setPa($pa) {
         $this->pa = $pa;
-        
-         return $this;
+        return $this;
     }
 
-/**
-     * Attaque le personnage ciblé en parametre.
+    
+    /**
+     * Attaque le personnage ciblé en parametre
      * 
      * @param \AppBundle\Entity\Personnage $cible
      */
-    public function attaquer(Personnage $cible) {
+    public function attaquer(Personnage $cible){
         
     }
-    
     /**
      * Changer sa position initiale par les nouvelles coordonnées
      * 
      * @param int $ligne
      * @param int $colonne
      */
-    public function seDeplacer(int $ligne, int $colonne) {
+    public function seDeplacer(int $ligne, int $colonne){
         $this->positionH = $ligne;
         $this->positionV = $colonne;
     }
@@ -194,8 +206,7 @@ class Personnage {
     /**
      * Methode pour mourir
      */
-    public function paul() {
-        var_dump("Bravo, vous etes Paul!");       
+    public function paul(){
+        var_dump("bravo ! vous etes paul.");
     }
 }
-

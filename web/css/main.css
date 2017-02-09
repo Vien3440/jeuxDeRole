@@ -1,0 +1,14 @@
+.btnStart{
+   position: relative;
+   width: 300px;
+   height: 75px;  
+}
+
+#formPlayer{
+    position: relative;
+    width: 300px;
+   height: 75px;
+   display: none;
+}
+
+

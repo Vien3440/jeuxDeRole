@@ -53,7 +53,7 @@ class Stats
     /**
      * Get id
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -64,6 +64,7 @@ class Stats
      * Set pv
      *
      * @param integer $pv
+     *
      * @return Stats
      */
     public function setPv($pv)
@@ -76,7 +77,7 @@ class Stats
     /**
      * Get pv
      *
-     * @return integer 
+     * @return int
      */
     public function getPv()
     {
@@ -87,6 +88,7 @@ class Stats
      * Set mov
      *
      * @param integer $mov
+     *
      * @return Stats
      */
     public function setMov($mov)
@@ -99,7 +101,7 @@ class Stats
     /**
      * Get mov
      *
-     * @return integer 
+     * @return int
      */
     public function getMov()
     {
@@ -110,6 +112,7 @@ class Stats
      * Set att
      *
      * @param integer $att
+     *
      * @return Stats
      */
     public function setAtt($att)
@@ -122,7 +125,7 @@ class Stats
     /**
      * Get att
      *
-     * @return integer 
+     * @return int
      */
     public function getAtt()
     {
@@ -132,7 +135,8 @@ class Stats
     /**
      * Set def
      *
-     * @param integer $def
+     * @param float $def
+     *
      * @return Stats
      */
     public function setDef($def)
@@ -145,10 +149,11 @@ class Stats
     /**
      * Get def
      *
-     * @return integer 
+     * @return float
      */
     public function getDef()
     {
         return $this->def;
     }
 }
+
