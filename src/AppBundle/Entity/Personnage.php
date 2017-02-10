@@ -39,7 +39,7 @@ class Personnage {
     /**
      * @var \stdClass
      *
-     * @ORM\OneToOne(targetEntity="Race")
+     * @ORM\ManyToOne(targetEntity="Race")
      * @ORM\JoinColumn(name="fk_race", referencedColumnName="id")
      */
     private $race;
@@ -47,7 +47,7 @@ class Personnage {
     /**
      * @var \stdClass
      *
-     * @ORM\OneToOne(targetEntity="Classe")
+     * @ORM\ManyToOne(targetEntity="Classe")
      * @ORM\JoinColumn(name="fk_classe", referencedColumnName="id")
      */
     private $classe;

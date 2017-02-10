@@ -94,5 +94,9 @@ class Classe
     {
         return $this->stats;
     }
+    
+     public function __toString() {
+        return $this->getNom();
+    }
 }
 
