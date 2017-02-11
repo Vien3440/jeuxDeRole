@@ -189,19 +189,19 @@ class Personnage {
      * 
      * @param \AppBundle\Entity\Personnage $cible
      */
-    public function attaquer(Personnage $cible){
-        
-    }
+//    public function attaquer(Personnage $cible){
+//        
+//    }
     /**
      * Changer sa position initiale par les nouvelles coordonnées
      * 
      * @param int $ligne
      * @param int $colonne
      */
-    public function seDeplacer(int $ligne, int $colonne){
-        $this->positionH = $ligne;
-        $this->positionV = $colonne;
-    }
+//    public function seDeplacer(int $ligne, int $colonne){
+//        $this->positionH = $ligne;
+//        $this->positionV = $colonne;
+//    }
     
     /**
      * Methode pour mourir

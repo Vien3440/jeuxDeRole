@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Form\PersonnageType;
+use AppBundle\Form\StatsType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -36,6 +37,26 @@ class DefaultController extends Controller
             "formulaire" => $form->createView()
         ));
     }
+    
+    /**
+     * @Route("/stats",name="statsInit")
+     */
+    public function creationStatsPerso (Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $joueur = $request->getSession()->get("j" . strval($request->getSession()->get('actuel')));
+        
+              $idStats = $joueur->getPersonnage()->getStats()->getId();
+
+              $stats = $em->find("AppBundle:Stats", $idStats);
+              
+        $formStats = $this->createForm(StatsType::class,$stats);
+        
+        return $this->render('default/selectStats.html.twig',array(
+            "formulaire" => $formStats->createView()
+        ));            
+    }
+
     /**
      * @Route("/game", name="game")
      */

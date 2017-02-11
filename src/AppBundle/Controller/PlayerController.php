@@ -15,6 +15,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class PlayerController extends Controller {
 
@@ -39,7 +40,7 @@ class PlayerController extends Controller {
                 $joueurs = $this->getDoctrine()->getRepository(Joueur::class)->findByEmail($email);
                 if ($joueurs != null) {
                     $joueur = $joueurs[0];
-//                    return new Response($joueurs[0]->getEmail());
+                    return new Response($joueurs[0]->getEmail());
                 } else {
                     //si nouveau joueur
                     $joueur = new Joueur();
@@ -64,12 +65,12 @@ class PlayerController extends Controller {
         $personnage = new Personnage();
         $form = $this->createForm(PersonnageType::class, $personnage);
         $form->handleRequest($r);
-                $em->persist($personnage->majStats());
-
+        
+        $em->persist($personnage->majStats());
         $em->persist($personnage);
          $this->mergeJoueur($personnage, $r, $em);
         $em->flush();
-        return $this->redirectToRoute("switch");
+        return $this->redirectToRoute("statsInit");
     }
 
       /**
