@@ -15,10 +15,8 @@ class PersonnageType extends AbstractType
     {
         $builder
                 ->add('nom')
-                ->add('pa')
-//                ->add('stats')
                 ->add('race')
-                ->add('classe')        ;
+                ->add('classe');
     }
     
     /**

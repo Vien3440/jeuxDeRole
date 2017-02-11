@@ -9,6 +9,8 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Joueur;
+use AppBundle\Entity\Personnage;
+use AppBundle\Form\PersonnageType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -62,12 +64,29 @@ class PlayerController extends Controller {
         $personnage = new Personnage();
         $form = $this->createForm(PersonnageType::class, $personnage);
         $form->handleRequest($r);
-        $em->persist($personnage->majStats());
+                $em->persist($personnage->majStats());
+
         $em->persist($personnage);
+         $this->mergeJoueur($personnage, $r, $em);
         $em->flush();
         return $this->redirectToRoute("switch");
     }
 
+      /**
+     * Cette mehode nous permet de lier un joueur a un personnage
+     * 
+     * @param type $perso personnage a merger
+     * @param type $r Request
+     * @param type $em entity manager
+     * @return type 
+     */
+    public function mergeJoueur($perso, $r, $em) {
+        $joueur = $r->getSession()->get("j" . strval($r->getSession()->get('actuel')));
+        $joueur->setPersonnage($perso);
+        $em->merge($joueur);
+        return $em;
+    }
+    
     /**
      * Doit etre appelée par la validation de la création du personnage precendent !
      * @param Request $r
