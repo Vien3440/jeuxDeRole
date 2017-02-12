@@ -8,61 +8,78 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class DefaultController extends Controller
-{
+class DefaultController extends Controller {
+
     /**
      * @Route("/", name="homepage")
      */
-    public function indexAction(Request $request)
-    {
+    public function indexAction(Request $request) {
         return $this->render('default/index.html.twig');
     }
-    
+
     /**
      * @Route("/personnage/create", name="createPerso")
      */
-    public function creationPersonnage(Request $request)
-    {
-       
-          //création du formulaire basé sur le Personnage
+    public function creationPersonnage(Request $request) {
+
+        //création du formulaire basé sur le Personnage
         $form = $this->createForm(PersonnageType::class);
         //Recuperation de l'objet joueur en session
         $numeroDuJoueur = $request->getSession()->get('actuel');
         $numeroDuJoueurEnChaineDeCaractere = strval($numeroDuJoueur);
         $joueur = $request->getSession()->get("j" . $numeroDuJoueurEnChaineDeCaractere);
         // on retourne tout sur la vue twig
-        return $this->render('default/creationPersonnage.html.twig',array(
-            "j" => $joueur,
-            "joueur" => $request->getSession()->get("j" . strval($request->getSession()->get('actuel'))),
-            "formulaire" => $form->createView()
+        return $this->render('default/creationPersonnage.html.twig', array(
+                    "j" => $joueur,
+                    "joueur" => $request->getSession()->get("j" . strval($request->getSession()->get('actuel'))),
+                    "formulaire" => $form->createView()
         ));
     }
-    
+
     /**
      * @Route("/stats",name="statsInit")
      */
-    public function creationStatsPerso (Request $request)
-    {
+    public function creationStatsPerso(Request $request) {
         $em = $this->getDoctrine()->getManager();
         $joueur = $request->getSession()->get("j" . strval($request->getSession()->get('actuel')));
-        
-              $idStats = $joueur->getPersonnage()->getStats()->getId();
 
-              $stats = $em->find("AppBundle:Stats", $idStats);
-              
-        $formStats = $this->createForm(StatsType::class,$stats);
-        
-        return $this->render('default/selectStats.html.twig',array(
-            "formulaire" => $formStats->createView()
-        ));            
+        $idStats = $joueur->getPersonnage()->getStats()->getId();
+
+        $stats = $em->find("AppBundle:Stats", $idStats);
+
+        $formStats = $this->createForm(StatsType::class, $stats);
+
+        //// Metohde retourne nombre 
+        $numRandom = $this->randomStats();
+
+        ///// Recup pour adition en twig 
+        $pv = $stats->getPv();
+        $att = $stats->getAtt();
+        $deff = $stats->getDef();
+        $mov = $stats->getMov();
+
+        return $this->render('default/selectStats.html.twig', array(
+                    "formulaire" => $formStats->createView(),
+                    'rd' => $numRandom,
+                    'pv' => $pv,
+                    'att' => $att,
+                    'def' => $deff,
+                    'mov' => $mov
+        ));
+    }
+
+    public function randomStats() {
+        $TablNb = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
+        $randomStats = array_rand($TablNb);
+        return $randomStats;
     }
 
     /**
      * @Route("/game", name="game")
      */
-    public function getGameUI(Request $request)
-    {
+    public function getGameUI(Request $request) {
         // replace this example code with whatever you need
         return $this->render('default/game_ui.twig');
     }
+
 }

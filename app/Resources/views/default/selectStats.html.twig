@@ -1,6 +1,13 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
+    {{rd}}
     {{form_start (formulaire)}}
+   
+     {{ form_widget(formulaire.pv,{ 'attr': {'max': rd +pv,'min': pv } })}}
+     {{ form_widget(formulaire.att,{ 'attr': {'max': rd +att,'min': att } })}}
+     {{ form_widget(formulaire.def,{ 'attr': {'max': rd +def,'min': def } })}}
+     {{ form_widget(formulaire.mov,{ 'attr': {'max': rd +mov,'min': mov} })}}
     {{form_end (formulaire)}}
 {% endblock %}
+
