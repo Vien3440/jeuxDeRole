@@ -1,13 +1,17 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    {{rd}}
+    <input id="rdStats" type="text" name="fname" readonly="" value="{{rd}}">
     {{form_start (formulaire)}}
-   
-     {{ form_widget(formulaire.pv,{ 'attr': {'max': rd +pv,'min': pv } })}}
-     {{ form_widget(formulaire.att,{ 'attr': {'max': rd +att,'min': att } })}}
-     {{ form_widget(formulaire.def,{ 'attr': {'max': rd +def,'min': def } })}}
-     {{ form_widget(formulaire.mov,{ 'attr': {'max': rd +mov,'min': mov} })}}
+     {{ form_widget(formulaire.pv,{ 'attr': {'min': pv } })}}
+     {{ form_widget(formulaire.att,{ 'attr': {'min': att } })}}
+     {{ form_widget(formulaire.def,{ 'attr': {'min': def } })}}
+     {{ form_widget(formulaire.mov,{ 'attr': {'min': mov,'readonly':' '} })}}
+     <input type="submit" src="{{path('updateRd')}}" value="update" />
+     
+
+
     {{form_end (formulaire)}}
 {% endblock %}
 
+{% block javascripts %}<script src={{asset("js/ajaxStats.js")}}></script> {% endblock %}

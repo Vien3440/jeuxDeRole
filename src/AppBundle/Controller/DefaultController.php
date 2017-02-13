@@ -6,6 +6,7 @@ use AppBundle\Form\PersonnageType;
 use AppBundle\Form\StatsType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller {
@@ -58,6 +59,8 @@ class DefaultController extends Controller {
         $deff = $stats->getDef();
         $mov = $stats->getMov();
 
+        $this->upStats();
+        
         return $this->render('default/selectStats.html.twig', array(
                     "formulaire" => $formStats->createView(),
                     'rd' => $numRandom,
@@ -69,9 +72,26 @@ class DefaultController extends Controller {
     }
 
     public function randomStats() {
-        $TablNb = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
+        $TablNb = [ 20,44,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,11,1];
         $randomStats = array_rand($TablNb);
+        
         return $randomStats;
+    }
+    
+    /**
+     * @Route("/updateRd",name="updateRd")
+     */
+    public function updateRd(){
+        echo 'Ok !!!!!!!!!!!!';
+       
+    }
+
+        /**
+     * @Route("/stats/up")
+     */
+    public function upStats(){
+       $reponseJson = new JsonResponse();
+            return $reponseJson;
     }
 
     /**
