@@ -12,3 +12,11 @@
 }
 
 
+.formStats{
+    position: relative;
+    width: 300px;
+}
+
+.formStats>h3{
+    text-align: center;
+}

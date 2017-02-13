@@ -67,7 +67,8 @@ class DefaultController extends Controller {
                     'pv' => $pv,
                     'att' => $att,
                     'def' => $deff,
-                    'mov' => $mov
+                    'mov' => $mov,
+                    'j'=>$joueur
         ));
     }
 

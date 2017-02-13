@@ -1,14 +1,16 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    <input id="rdStats" type="text" name="fname" readonly="" value="{{rd}}">
-    {{form_start (formulaire)}}
-     {{ form_widget(formulaire.pv,{ 'attr': {'min': pv } })}}
-     {{ form_widget(formulaire.att,{ 'attr': {'min': att } })}}
-     {{ form_widget(formulaire.def,{ 'attr': {'min': def } })}}
-     {{ form_widget(formulaire.mov,{ 'attr': {'min': mov,'readonly':' '} })}}
-     <input type="submit" src="{{path('updateRd')}}" value="update" />
-     
+    <div class="formStats">
+        <h3>{{j.email}}</h3>
+        <input id="rdStats" type="text" name="fname" readonly="" value="{{rd}}">
+        {{form_start (formulaire)}}
+        {{ form_widget(formulaire.pv,{ 'attr': {'min': pv } })}}
+        {{ form_widget(formulaire.att,{ 'attr': {'min': att } })}}
+        {{ form_widget(formulaire.def,{ 'attr': {'min': def } })}}
+        {{ form_widget(formulaire.mov,{ 'attr': {'min': mov,'readonly':' '} })}}<br>
+        <input type="submit" src="{{path('updateRd')}}" value="update" />
+    </div>
 
 
     {{form_end (formulaire)}}
