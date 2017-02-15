@@ -4,13 +4,13 @@
     <div class="formStats">
         <h3>{{j.email}}</h3>
         <input id="rdStats" type="text" name="fname" readonly="" value="{{rd}}">
-        {{form_start (formulaire)}}
+        {{ form_start(formulaire,{'attr':{'action':path("upStats")}}) }}
         {{ form_widget(formulaire.pv,{ 'attr': {'min': pv } })}}
         {{ form_widget(formulaire.att,{ 'attr': {'min': att } })}}
         {{ form_widget(formulaire.def,{ 'attr': {'min': def } })}}
         {{ form_widget(formulaire.mov,{ 'attr': {'min': mov,'readonly':' '} })}}<br>
-{#        <input type="submit" src="{{path('saveStats')}}" value="Validation" />
-#}    </div>
+        <input type="submit" value="Validation" />
+    </div>
 
 
     {{form_end (formulaire)}}

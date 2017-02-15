@@ -2,11 +2,11 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Stats;
 use AppBundle\Form\PersonnageType;
 use AppBundle\Form\StatsType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller {
@@ -50,17 +50,16 @@ class DefaultController extends Controller {
 
         $formStats = $this->createForm(StatsType::class, $stats);
 
-        //// Metohde retourne nombre 
+        //// Methode retourne nombre 
         $numRandom = $this->randomStats();
 
-        ///// Recup pour adition en twig 
+        ///// Recup pour addition en twig 
         $pv = $stats->getPv();
         $att = $stats->getAtt();
         $deff = $stats->getDef();
         $mov = $stats->getMov();
 
-        $this->upStats();
-        
+
         return $this->render('default/selectStats.html.twig', array(
                     "formulaire" => $formStats->createView(),
                     'rd' => $numRandom,
@@ -68,31 +67,30 @@ class DefaultController extends Controller {
                     'att' => $att,
                     'def' => $deff,
                     'mov' => $mov,
-                    'j'=>$joueur
+                    'j' => $joueur
         ));
     }
 
     public function randomStats() {
-        $TablNb = [ 20,44,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,11,1];
+        $TablNb = [20, 44, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 11, 1];
         $randomStats = array_rand($TablNb);
-        
+
         return $randomStats;
     }
-    
-    /**
-     * @Route("/updateRd",name="updateRd")
-     */
-    public function updateRd(){
-        echo 'Ok !!!!!!!!!!!!';
-       
-    }
 
-        /**
-     * @Route("/stats/up")
+    /**
+     * @Route("/stats/up", name="upStats")
      */
-    public function upStats(){
-       $reponseJson = new JsonResponse();
-            return $reponseJson;
+    public function upStats(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $stats = new Stats();
+        $form = $this->createForm(StatsType::class, $stats);
+        $form->handleRequest($request);
+        
+        $em->merge($stats);
+        $em->flush();
+
+        return $this->render('switchPlayer');
     }
 
     /**
