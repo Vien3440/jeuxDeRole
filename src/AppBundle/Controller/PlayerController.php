@@ -40,7 +40,6 @@ class PlayerController extends Controller {
                 $joueurs = $this->getDoctrine()->getRepository(Joueur::class)->findByEmail($email);
                 if ($joueurs != null) {
                     $joueur = $joueurs[0];
-                    return new Response($joueurs[0]->getEmail());
                 } else {
                     //si nouveau joueur
                     $joueur = new Joueur();
