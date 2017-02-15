@@ -90,7 +90,7 @@ class DefaultController extends Controller {
         $em->merge($stats);
         $em->flush();
 
-        return $this->render('switchPlayer');
+        return $this->redirect($this->generateUrl('switch'));
     }
 
     /**
