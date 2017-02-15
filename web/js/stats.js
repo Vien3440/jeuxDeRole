@@ -24,7 +24,6 @@ $(document).ready(function () {
                 $newPv = parseInt($('input[id=appbundle_stats_pv]').val());
                 // j'affecte cette nouvelle valeur a pv 
                 $pv = $newPv;
-//            $maxPv = $newPv + 2 ; 
                 $('#appbundle_stats_pv').attr({
                     "max": $newPv + $rd
                 });
@@ -55,9 +54,9 @@ $(document).ready(function () {
                 // j'affecte cette nouvelle valeur a rd 
                 $rd = $rd - 1;
                 $('input[id=rdStats]').val($rd);
-                // je crée une variable avec la nouvelle valeur de pv 
+                // je crée une variable avec la nouvelle valeur de att 
                 $newAtt = parseInt($('input[id=appbundle_stats_att]').val());
-                // j'affecte cette nouvelle valeur a pv 
+                // j'affecte cette nouvelle valeur a att 
                 $att = $newAtt;
 
                 $('#appbundle_stats_att').attr({
@@ -69,7 +68,7 @@ $(document).ready(function () {
                 $('input[id=rdStats]').val($rd);//Get new valeur
                 // je crée une variable avec la nouvelle valeur de att
                 $newAtt = parseInt($('input[id=appbundle_stats_att]').val());
-                // j'affecte cette nouvelle valeur a pv 
+                // j'affecte cette nouvelle valeur a att 
                 $att = $newAtt;
 
                 

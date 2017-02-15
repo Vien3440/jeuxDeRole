@@ -9,11 +9,11 @@
         {{ form_widget(formulaire.att,{ 'attr': {'min': att } })}}
         {{ form_widget(formulaire.def,{ 'attr': {'min': def } })}}
         {{ form_widget(formulaire.mov,{ 'attr': {'min': mov,'readonly':' '} })}}<br>
-        <input type="submit" src="{{path('updateRd')}}" value="update" />
-    </div>
+{#        <input type="submit" src="{{path('saveStats')}}" value="Validation" />
+#}    </div>
 
 
     {{form_end (formulaire)}}
 {% endblock %}
 
-{% block javascripts %}<script src={{asset("js/ajaxStats.js")}}></script> {% endblock %}
+{% block javascripts %}<script src={{asset("js/stats.js")}}></script> {% endblock %}
