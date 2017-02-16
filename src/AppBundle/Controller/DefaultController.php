@@ -2,7 +2,6 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Stats;
 use AppBundle\Form\PersonnageType;
 use AppBundle\Form\StatsType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -77,21 +76,7 @@ class DefaultController extends Controller {
 //        return $randomStats;
 //    }
 
-    /**
-     * @Route("/stats/up", name="upStats")
-     */
-    public function upStats(Request $request) {
-        $em = $this->getDoctrine()->getManager();
-        $stats = new Stats();
-        $form = $this->createForm(StatsType::class, $stats);
-        $form->handleRequest($request);
-        
-        $em->merge($stats);
-        $em->flush();
-
-        return $this->redirect($this->generateUrl('switch'));
-    }
-
+  
     /**
      * @Route("/game", name="game")
      */
