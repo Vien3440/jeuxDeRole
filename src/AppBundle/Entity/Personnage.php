@@ -58,13 +58,9 @@ class Personnage {
      * @ORM\Column(name="pa", type="integer")
      */
     private $pa;
-
-    
-    
     private $positionH;
-    
     private $positionV;
-    
+
     /**
      * Get id
      *
@@ -183,7 +179,6 @@ class Personnage {
         return $this;
     }
 
-    
     /**
      * Attaque le personnage ciblé en parametre
      * 
@@ -202,26 +197,29 @@ class Personnage {
 //        $this->positionH = $ligne;
 //        $this->positionV = $colonne;
 //    }
-    
+
     /**
      * Methode pour mourir
      */
-    public function paul(){
+    public function paul() {
         var_dump("bravo ! vous etes paul.");
     }
-    
-     function __construct() {
+
+    function __construct() {
         $this->pa = 2;
     }
 
-    public function majStats() {
-        $this->stats = new Stats();
-        $this->stats->setPv($this->race->getStats()->getPv() + $this->classe->getStats()->getPv());
-        $this->stats->setAtt($this->race->getStats()->getAtt() + $this->classe->getStats()->getAtt());
-        $this->stats->setMov($this->race->getStats()->getMov() + $this->classe->getStats()->getMov());
-        $this->stats->setDef($this->race->getStats()->getDef() + $this->classe->getStats()->getDef());
+    public function majStats(Stats $stats = null) {
+        if ($stats == null) {
+            $this->stats = new Stats();
+            $this->stats->setPv($this->race->getStats()->getPv() + $this->classe->getStats()->getPv());
+            $this->stats->setAtt($this->race->getStats()->getAtt() + $this->classe->getStats()->getAtt());
+            $this->stats->setMov($this->race->getStats()->getMov() + $this->classe->getStats()->getMov());
+            $this->stats->setDef($this->race->getStats()->getDef() + $this->classe->getStats()->getDef());
+        }else{
+            $this->stats = $stats ;
+        }
         return $this->stats;
     }
-    
-    
+
 }

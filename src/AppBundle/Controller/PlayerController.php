@@ -65,30 +65,32 @@ class PlayerController extends Controller {
         $personnage = new Personnage();
         $form = $this->createForm(PersonnageType::class, $personnage);
         $form->handleRequest($r);
-        
+
         $em->persist($personnage->majStats());
         $em->persist($personnage);
-         $this->mergeJoueur($personnage, $r, $em);
+        $this->mergeJoueur($personnage, $r, $em);
         $em->flush();
         return $this->redirectToRoute("statsInit");
     }
 
-          /**
+    /**
      * @Route("/stats/up", name="upStats")
      */
     public function upStats(Request $request) {
+        // On recup le Joueur
         $em = $this->getDoctrine()->getManager();
-        $stats = new Stats();
+        $joueur = $request->getSession()->get("j" . strval($request->getSession()->get('actuel')));
+        $stats = $em->getRepository("AppBundle:Stats")->find($joueur->getPersonnage()->getStats()->getId());
         $form = $this->createForm(StatsType::class, $stats);
         $form->handleRequest($request);
-        
+//        $em->merge($joueur->getPersonnage(majStats($stats)));
         $em->merge($stats);
         $em->flush();
 
         return $this->redirect($this->generateUrl('switch'));
     }
 
-      /**
+    /**
      * Cette mehode nous permet de lier un joueur a un personnage
      * 
      * @param type $perso personnage a merger
@@ -102,7 +104,7 @@ class PlayerController extends Controller {
         $em->merge($joueur);
         return $em;
     }
-    
+
     /**
      * Doit etre appelée par la validation de la création du personnage precendent !
      * @param Request $r
@@ -116,7 +118,7 @@ class PlayerController extends Controller {
             return $this->redirectToRoute('createPerso');
         } else {
             return $this->redirectToRoute('game');
-            
         }
     }
+
 }
