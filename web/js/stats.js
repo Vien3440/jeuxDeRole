@@ -2,8 +2,26 @@ $(document).ready(function () {
 // Recup valeur pv actuel
     var $pv = $('input[id=appbundle_stats_pv]').val();
     var $att = $('input[id=appbundle_stats_att]').val();
-//    var $mov = $('input[id=appbundle_stats_mov]').val();
 
+
+    var pool;
+    var tries = 10;
+
+    /**
+     * Generateur de Points
+     * @param {type} e
+     * @returns {undefined}
+     */
+    var generator = function (e) {
+        e.preventDefault();
+        if (tries >= 0) {
+            tries--;
+            pool = Math.random() * 40 + 10;
+            pool = Math.round(pool);
+            $("#rdStats").val(pool);
+        }
+    };
+    $("#generator").click(generator);
 
 //quand je click sur pv 
     pvUpdate($pv);
@@ -53,7 +71,7 @@ $(document).ready(function () {
         $('input[id=appbundle_stats_att]').keypress(function (evt) {
             evt.preventDefault();
         });
-        
+
         $('input[id=appbundle_stats_att]').on("input propertychange", function () {
             var $rd = parseInt($('input[id=rdStats]').val());
 

@@ -50,8 +50,8 @@ class DefaultController extends Controller {
 
         $formStats = $this->createForm(StatsType::class, $stats);
 
-        //// Methode retourne nombre 
-        $numRandom = $this->randomStats();
+//        //// Methode retourne nombre 
+//        $numRandom = $this->randomStats();
 
         ///// Recup pour addition en twig 
         $pv = $stats->getPv();
@@ -62,7 +62,6 @@ class DefaultController extends Controller {
 
         return $this->render('default/selectStats.html.twig', array(
                     "formulaire" => $formStats->createView(),
-                    'rd' => $numRandom,
                     'pv' => $pv,
                     'att' => $att,
                     'def' => $deff,
@@ -71,12 +70,12 @@ class DefaultController extends Controller {
         ));
     }
 
-    public function randomStats() {
-        $TablNb = [20, 44, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 11, 1];
-        $randomStats = array_rand($TablNb);
-
-        return $randomStats;
-    }
+//    public function randomStats() {
+//        $TablNb = [20, 44, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 11, 1];
+//        $randomStats = array_rand($TablNb);
+//
+//        return $randomStats;
+//    }
 
     /**
      * @Route("/stats/up", name="upStats")

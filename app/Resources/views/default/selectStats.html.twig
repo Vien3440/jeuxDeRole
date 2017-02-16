@@ -3,7 +3,8 @@
 {% block body %}
     <div class="formStats">
         <h3>{{j.email}}</h3>
-        <input id="rdStats" type="text" name="fname" readonly="" value="{{rd}}">
+        <button id="generator">Stats</button>
+        <input id="rdStats" type="text" name="fname" readonly="" value="0">
         {{ form_start(formulaire,{'attr':{'action':path("upStats")}}) }}
         {{ form_widget(formulaire.pv,{ 'attr': {'min': pv, 'pattern':'\d*' } })}}
         {{ form_widget(formulaire.att,{ 'attr': {'min': att } })}}
